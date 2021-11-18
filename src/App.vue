@@ -11,6 +11,14 @@
 				:ChangeDone='ChangeDone'
 				:ClearDone='ClearDone'
 				/>
+				<!-- 通过父组件给子组件传递函数类型的props实现：子给父传递数据 -->
+				<!-- <Children :GetName='GetName'/> -->
+
+				<!-- 通过自定义一个事件 给子组件绑定一个事件 v-on @ -->
+				<!-- <Children v-on:ati='GetName'/> -->
+				
+				<!-- 通过自定义给子组件绑定一个引用信息 ref   -->
+				<Children ref="ati" @OffDown='OffDown'/>
 			</div>
 		</div>
 	</div>
@@ -20,6 +28,7 @@
 import TodoHeader from './components/TodoHeader.vue'
 import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
+import Children from './components/Children.vue'
 
 
 export default {
@@ -54,12 +63,19 @@ export default {
 		// 清除已完成的任务
 		ClearDone(){
 			this.todos =this.todos.filter(item=>item.done != true)
+		},
+		GetName(name){
+			console.log('我被调用了而且收到了参数',name);
+		},
+		OffDown(value){
+			value.$off('ati')
 		}
 	},
     components:{
         TodoHeader,
         TodoList,
-        TodoFooter    
+        TodoFooter,
+		Children    
     },
 	watch:{
 		todos:{
@@ -68,6 +84,10 @@ export default {
 				localStorage.setItem('todos',JSON.stringify(newValue))
 			}
 		}
+	},
+	mounted(){
+		// this.$refs.ati  亲自拿到了VC实例对象 并且绑定了一个ati 事件 this.GetName为事件处理函数
+		this.$refs.ati.$once('ati',this.GetName)
 	}
 	
 }
