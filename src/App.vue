@@ -24,13 +24,11 @@ import TodoFooter from './components/TodoFooter.vue'
 
 export default {
     name:'App',
+	// 为什么要是用深度监视 因为vue虽然提供了监视数组和对象的方法 但是浅度监视检测不到对象内部数据的变化 
+	// 所以要使用深度监视 所以不能使用间歇性是 使用完整写法 添加 deep:true
     data(){
         return{
-			todos:[
-				{id:'001',event:'吃饭',done:true},
-				{id:'002',event:'睡觉',done:false},
-				{id:'003',event:'打豆豆',done:false}
-			]
+			todos: JSON.parse(localStorage.getItem('todos'))||[]
         }
     },
 	methods:{
@@ -63,7 +61,14 @@ export default {
         TodoList,
         TodoFooter    
     },
-	
+	watch:{
+		todos:{
+			deep:true,
+			handler(newValue,oldValue){
+				localStorage.setItem('todos',JSON.stringify(newValue))
+			}
+		}
+	}
 	
 }
 </script>

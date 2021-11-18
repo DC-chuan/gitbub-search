@@ -21,3 +21,9 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+node_modules
+02-props配置项
+3-mixin混入
+04-javascript储存对象
+05-todolist-first
+06-todolist-本地储存
