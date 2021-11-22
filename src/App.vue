@@ -1,13 +1,26 @@
 <template>
-  <div class="container">
-    <Search/>
-    <List/>
+ <div>
+    <Banner/>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-2">
+      <div class="list-group">
+        <router-link class="list-group-item" to='/home'  active-class="active">Home</router-link>
+        <router-link class="list-group-item" to='/about' active-class="active">About</router-link>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="panel">
+        <div class="panel-body">
+            <router-view></router-view>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Search from './components/Search.vue'
-import List from './components/List.vue'
+import Banner from './components/Banner.vue'
 export default {
     name:'App',
     data(){
@@ -16,15 +29,11 @@ export default {
         }
     },
     components:{
-        Search,
-        List
-    },
+      Banner
+    }
 }
 </script>
 
 <style lang="css">
-.container{
-    position: relative;
-}
     
 </style>

@@ -23,7 +23,6 @@ pnpm-debug.log*
 *.sw?
 node_modules
 02-props配置项
-3-mixin混入
 04-javascript储存对象
 05-todolist-first
 06-todolist-本地储存
@@ -34,3 +33,7 @@ node_modules
 11-动画&过渡
 12-todolist-animate
 13-配置代理
+02-props配置项
+3-mixin混入
+14-github-search
+15-多组件共享数据-vuecli
